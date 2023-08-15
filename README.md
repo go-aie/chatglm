@@ -2,7 +2,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/go-aie/chatglm/vulndb.svg)][1]
 
-Go binding for [ChatGTLM.cpp][2].
+Go binding for [ChatGLM.cpp][2].
 
 
 ## Usage

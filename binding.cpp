@@ -3,10 +3,10 @@
 #include "binding.h"
 #include <vector>
 
-// structure/class definition.
+/* ===== structure/class definitions. ===== */
 
 struct GenerationConfig : public chatglm::GenerationConfig {
-	GenerationConfig(
+    GenerationConfig(
         int max_length,
         int max_context_length,
         bool do_sample,
@@ -42,7 +42,7 @@ class CallbackStreamer : public chatglm::BaseStreamer {
     int print_len_;
 };
 
-// function implementation.
+/* ===== function implementations. ===== */
 
 GenerationConfig* NewGenerationConfig(
     int max_length,
@@ -54,7 +54,7 @@ GenerationConfig* NewGenerationConfig(
     float repetition_penalty,
     int num_threads
 ) {
-	return new GenerationConfig(max_length,
+    return new GenerationConfig(max_length,
                                   max_context_length,
                                   do_sample,
                                   top_k,
@@ -77,8 +77,8 @@ void DeletePipeline(Pipeline* p) {
 }
 
 void Pipeline_Generate(Pipeline* p, char* prompt, GenerationConfig* gen_config, char* output) {
-	const GenerationConfig & config = *gen_config;
-	auto streamer = std::make_shared<CallbackStreamer>(p, p->tokenizer.get());
+    const GenerationConfig & config = *gen_config;
+    auto streamer = std::make_shared<CallbackStreamer>(p, p->tokenizer.get());
     std::string result = p->generate(prompt, config, streamer.get());
     if (output != NULL) {
         std::strcpy(output, result.c_str());
@@ -115,12 +115,12 @@ void CallbackStreamer::put(const std::vector<int> &output_ids) {
         print_len_ = text.size();
     }
 
-	streamCallback(pipeline_, const_cast<char*>(printable_text.c_str()), 0);
+    streamCallback(pipeline_, const_cast<char*>(printable_text.c_str()), 0);
 }
 
 void CallbackStreamer::end() {
     std::string text = tokenizer_->decode(token_cache_);
-	streamCallback(pipeline_, const_cast<char*>(text.substr(print_len_).c_str()), 1);
+    streamCallback(pipeline_, const_cast<char*>(text.substr(print_len_).c_str()), 1);
     is_prompt_ = true;
     token_cache_.clear();
     print_len_ = 0;
