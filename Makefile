@@ -2,7 +2,7 @@
 init:
 	cd $$PWD/chatglm.cpp && git submodule update --init --recursive
 	python3 -m venv venv
-	$$PWD/venv/bin/pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+	$$PWD/venv/bin/pip install -r requirements.txt
 
 .PHONY: convert
 convert: init

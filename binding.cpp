@@ -2,6 +2,7 @@
 
 #include "binding.h"
 #include <vector>
+#include <algorithm>
 
 /* ===== structure/class definitions. ===== */
 

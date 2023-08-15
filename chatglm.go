@@ -3,8 +3,8 @@ package chatglm
 /*
 #cgo CXXFLAGS: -I${SRCDIR}/chatglm.cpp -I${SRCDIR}/chatglm.cpp/third_party/ggml/include/ggml -I${SRCDIR}/chatglm.cpp/third_party/sentencepiece/src
 #cgo LDFLAGS: -L${SRCDIR}/chatglm.cpp/build/lib -lchatglm -lggml -lsentencepiece
+#cgo CXXFLAGS: -std=c++17
 #cgo darwin LDFLAGS: -framework Accelerate
-#cgo darwin CXXFLAGS: -std=c++11
 
 #include "binding.h"
 #include <stdlib.h>
